@@ -16,14 +16,7 @@
     disabledPackages: [
       "exception-reporting"
       "metrics"
-      "autocomplete"
-      "atom-lint"
-      "slack-atom"
       "ruby-quick-test"
-      "slack-chat"
-      "linter-erb"
-      "linter-scss-lint"
-      "atom-color-highlight"
     ]
     themes: [
       "unity-ui"
