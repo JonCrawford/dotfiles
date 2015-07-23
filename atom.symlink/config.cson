@@ -1,34 +1,92 @@
-'editor':
-  'showIndentGuide': true
-  'fontFamily': 'Menlo'
-  'fontSize': 15
-  'invisibles': {}
-'core':
-  'ignoredNames': [
-    '.bundle'
-    '.git'
-    'log'
-    'repositories'
-    'tmp'
-    'vendor'
-  ]
-  'themes': [
-    'unity-ui'
-    'glacier-syntax'
-  ]
-  'hideGitIgnoredFiles': true
-  'disabledPackages': [
-    'background-tips'
-    'exception-reporting'
-    'metrics'
-  ]
-'spell-check':
-  'grammars': [
-    'text.plain'
-    'source.gfm'
-    'text.git-commit'
-  ]
-'welcome':
-  'showOnStartup': false
-'release-notes':
-  'viewedVersion': '0.89.0'
+"*":
+  editor:
+    fontFamily: "Menlo"
+    showIndentGuide: true
+    invisibles: {}
+    softWrap: true
+  core:
+    ignoredNames: [
+      ".bundle"
+      ".git"
+      "log"
+      "repositories"
+      "tmp"
+      "vendor"
+    ]
+    disabledPackages: [
+      "exception-reporting"
+      "metrics"
+      "autocomplete"
+      "atom-lint"
+      "slack-atom"
+      "ruby-quick-test"
+      "slack-chat"
+      "linter-erb"
+      "linter-scss-lint"
+      "atom-color-highlight"
+    ]
+    themes: [
+      "unity-ui"
+      "one-light-syntax"
+    ]
+    projectHome: "/Users/jon/Sites/"
+  "spell-check":
+    grammars: [
+      "text.plain"
+      "source.gfm"
+      "text.git-commit"
+    ]
+  welcome:
+    showOnStartup: false
+  "release-notes":
+    viewedVersion: "0.89.0"
+  "git-diff":
+    showIconsInEditorGutter: true
+  linter:
+    ignoredLinterErrors: [
+      "scss-lint"
+    ]
+  "autocomplete-plus":
+    includeCompletionsFromAllBuffers: true
+    suggestionListFollows: "Word"
+  "circle-ci":
+    apiToken: "7fd7b8b85029ffcf56bfdb37ec2b3838fc143ac4"
+    iconColor: true
+  react: {}
+  tabs:
+    tabScrolling: true
+  emmet: {}
+  "autocomplete-ruby": {}
+  coverage: {}
+  "remote-atom":
+    keep_alive: true
+    launch_at_startup: true
+  rspec:
+    command: "spring rspec"
+    save_before_run: true
+    force_colored_results: false
+  "rails-transporter": {}
+  "rails-rspec": {}
+  "merge-conflicts": {}
+  "git-plus": {}
+  "slack-chat":
+    token: "xoxp-2151169905-2151169907-6235105473-77feba"
+    api_key: "2151169905.6486226768"
+    api_secret: "e042b81ac4bc59449735f5bd28aded85"
+    api_token: "xoxp-2151169905-2151169907-6486305664-f109be"
+  "slack-token": "xoxp-2151169905-2151169907-6235105473-77feba"
+  "atom-color-highlight": {}
+  wakatime:
+    ignore: [
+      "^/var/"
+      "^/tmp/"
+      "^/private/"
+      "COMMIT_EDITMSG$"
+      "PULLREQ_EDITMSG$"
+      "MERGE_MSG$"
+    ]
+    apikey: "bc385d87-7512-460b-9377-ef24b11d15b4"
+  "linter-scss-lint":
+    executablePath: "/Users/jon/.rvm/gems/ruby-2.0.0-p353@storenvy/bin/"
+  jshint:
+    supportLintingJsx: true

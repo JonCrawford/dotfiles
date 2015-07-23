@@ -1,0 +1,20 @@
+'Storenvy':
+  'title': 'Storenvy'
+  'paths': [
+    '/Users/jon/Sites/storenvy'
+  ]
+'infrastructure':
+  'title': 'infrastructure'
+  'paths': [
+    '/Users/jon/Sites/infrastructure'
+  ]
+'Storenvy Cart Service':
+  'title': 'Storenvy Cart Service'
+  'paths': [
+    '/Users/jon/Sites/storenvy/services/cart'
+  ]
+'Search Service (Storenvy)':
+  'title': 'Search Service (Storenvy)'
+  'paths': [
+    '/Users/jon/Sites/storenvy/services/search'
+  ]
