@@ -37,8 +37,9 @@ do
   source $file
 done
 
+plugins=(rails git ruby atom pow brew cap rvm zeus)
+
 unset config_files
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-plugins=(rails git ruby atom pow brew cap rvm zeus)
+export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/24.0.2
