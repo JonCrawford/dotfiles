@@ -1,6 +1,9 @@
 # Local/private config goes in the include
 [include]
         path = ~/.gitconfig.local
+[user]
+	name = Jonathan Crawford
+	email = REDACTED_EMAIL
 [hub]
         protocol = https
 [alias]
@@ -15,14 +18,17 @@
         branch = auto
         ui = true
 [core]
-        excludesfile = ~/.gitignore
-        editor = vim
+	excludesFile = ~/.gitignore_global
+        editor = code --wait
+
 [apply]
         whitespace = nowarn
 [mergetool]
         keepBackup = false
 [difftool]
         prompt = false
+[difftool "default-difftool"]
+        cmd = code --wait --diff $LOCAL $REMOTE
 [help]
         autocorrect = 1
 [push]
@@ -33,3 +39,28 @@
         default = simple
 [credential]
 	helper = osxkeychain
+
+[diff "spaceman-diff"]
+  command = /opt/homebrew/bin/spaceman-diff
+
+[init]
+	defaultBranch = main
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[merge]
+	tool = opendiff
+[credential]
+	helper =
+	helper = /usr/local/share/gcm-core/git-credential-manager-core
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+
