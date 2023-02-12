@@ -22,3 +22,15 @@ alias gb='git branch'
 alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gac='git add -A && git commit -m'
 alias ge='git-edit-new'
+
+# PUMA Rails server
+alias kpuma="killall puma-dev; kill -9 \$(showpuma)"
+alias showpuma="lsof -i tcp:3000 -t"
+
+
+# Custom Aliases
+
+alias so="cd ~/Developer/showoff"
+alias re="cd ~/Projects/restore"
+alias ca="cd ~/Projects/canal/canalytics"
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
