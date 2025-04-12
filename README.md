@@ -12,6 +12,27 @@ If you're interested in the philosophy behind why projects like these are
 awesome, you might want to [read my post on the
 subject](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
+## install
+
+Run this:
+
+```sh
+git clone https://github.com/holman/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+script/bootstrap
+```
+
+This will symlink the appropriate files in `.dotfiles` to your home directory.
+Everything is configured and tweaked within `~/.dotfiles`.
+
+The main file you'll want to change right off the bat is `zsh/zshrc.symlink`,
+which sets up a few paths that'll be different on your particular machine.
+
+`dot` is a simple script that installs some dependencies, sets sane macOS
+defaults, and so on. Tweak this script, and occasionally run `dot` from
+time to time to keep your environment fresh and up-to-date. You can find
+this script in `bin/`.
+
 ## topical
 
 Everything's built around topic areas. If you're adding a new area to your
@@ -28,7 +49,6 @@ above and see what components may mesh up with you.
 use, and build on what you do use.
 
 ## components
-
 There's a few special files in the hierarchy.
 
 - **bin/**: Anything in `bin/` will get added to your `$PATH` and be made
@@ -43,6 +63,7 @@ There's a few special files in the hierarchy.
 - **topic/\*.symlink**: Any file ending in `*.symlink` gets symlinked into
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get
+  symlinked in when you run `script/bootstrap`.
   symlinked in when you run `script/bootstrap`.
 
 ## install

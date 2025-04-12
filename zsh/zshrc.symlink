@@ -1,14 +1,63 @@
 
 # Source Prezto.
+# Load zsh/complist first
+zmodload -i zsh/complist
+
+# Initialize completion system
+autoload -Uz compinit bashcompinit
+
+bashcompinit
+compinit -i -d ~/.zcompdump
+
+
+# Set completion styles
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' group-name ''
+
+# Source Prezto
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# Deno completions
+if [[ ":$FPATH:" != *":/Users/jon/.zsh/completions:"* ]]; then
+  export FPATH="/Users/jon/.zsh/completions:$FPATH"
+fi
+
+# Local config
+if [[ -a ~/.localrc ]]; then
+  source ~/.localrc
+fi
+
+# Environment variables
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
-
-# your project folder that we can `c [tab]` to
 export PROJECTS=~/Projects
 
+# Pyenv configuration
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"      # For setting up the environment
+eval "$(pyenv init -)"           # For shell integration
+eval "$(pyenv virtualenv-init -)" # For automatic venv activation
+
+# Tool integrations
+. "/Users/jon/.deno/env"
+source /Users/jon/.op/plugins.sh
+
+# rbenv initialization
+eval "$(rbenv init -)"
+
+# Windsurf
+export PATH="/Users/jon/.codeium/windsurf/bin:$PATH"
+
+# Mint
+export PATH="/Users/jon/.mint/bin:$PATH"
+
+# DBT completion (add this before the final compinit)
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.
@@ -43,12 +92,30 @@ do
   source $file
 done
 
+plugins=(rails git ruby atom pow brew cap rbenv zeus)
+
 unset config_files
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/24.0.2
+
+# Better history
+# Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
+
+
+
+# #
+# # Executes commands at the start of an interactive session.
+# #
+# # Authors:
+# #   Sorin Ionescu <sorin.ionescu@gmail.com>
+# #
+
 
 # ZSH
   if type brew &>/dev/null; then
@@ -61,12 +128,7 @@ ZSH_DISABLE_COMPFIX="true"
 
 # Customize to your needs...
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# ZSH_THEME="powerlevel9k/powerlevel9k"
-
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/jon/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 export EDITOR='code -nw'
 export BUNDLER_EDITOR="code -nw"
@@ -74,8 +136,6 @@ export PATH="/usr/local/opt/mongodb@3.2/bin:$PATH"
 
 export PATH="/usr/local/bin:$PATH"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 
 eval "$(pyenv init -)"
 
@@ -85,7 +145,6 @@ export NVM_DIR="$HOME/.nvm"
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 source ~/.dbt-completion.bash
-export HOMEBREW_GITHUB_API_TOKEN=REDACTED_GITHUB_PAT
 
 
 # Better history
@@ -97,7 +156,41 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+export PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
+# Reinitialize completions after all changes
+compinit -i
 
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+
+# Created by `pipx` on 2024-12-31 21:45:10
+eval "$(register-python-argcomplete pipx)"
+export PATH="$PATH:/Users/jon/.local/bin"
+export SMARTPROPERTY_PG_PW="5x1I%aFM%w4h"
+
+
+export SDKROOT="$(xcrun --show-sdk-path)"
+export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
+export LDFLAGS="-L$(xcrun --show-sdk-path)/usr/lib"
+export CC=clang
+
+export EDITOR="code --wait"
+
+# pnpm
+export PNPM_HOME="/Users/jon/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Kitty
+alias icat="kitty +kitten icat"
+
+
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/jon/.lmstudio/bin"
